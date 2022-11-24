@@ -1,0 +1,10 @@
+{
+    "port": 9111,
+    "request_passphrase": "",
+    "ghostinspector": {
+        "base_url": "https://api.ghostinspector.com/v1",
+        "api_key": "",
+        "organization_id": ""
+    },
+    "folders": {}
+}

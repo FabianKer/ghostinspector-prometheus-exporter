@@ -1,0 +1,9 @@
+version: "3.0"
+services:
+  app:
+    image: ghostinspector-prometheus-exporter:latest
+    restart: always
+    ports:
+      - 9111:9111
+    volumes:
+      - ./settings.json:/app/settings.json
