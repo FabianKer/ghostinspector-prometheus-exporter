@@ -35,30 +35,41 @@ describe('Collectors', () => {
     it ('testRunsCollectTotal should set gauge', async () => {
         const gaugeModel = { set: (s) => {} };
         const gaugeMock = sinon.mock(gaugeModel);
-        gaugeMock.expects('set').once();
+        if (process.argv[2] !== undefined && process.argv[2] === '--skip-api-tests') {
+            gaugeMock.expects('set').never();
+        } else {
+            gaugeMock.expects('set').once();
+        }
         await testRunsTotalCollect(gaugeModel);
         gaugeMock.verify();
     });
 });
 
 describe('API', () => {
-    it('getTests', async () => {
-        let result;
-        await api.getTests().then(res => result = res.data);
-        assert.equal(result?.code, "SUCCESS");
-    });
+    console.log(process.argv);
+    if (process.argv[2] !== undefined && process.argv[2] === '--skip-api-tests') {
+        it('skipping API tests', () => {
+            assert.equal(true, true);
+        })
+    } else {
+        it('getTests', async () => {
+            let result;
+            await api.getTests().then(res => result = res.data);
+            assert.equal(result?.code, "SUCCESS");
+        });
 
-    it('getOrganization', async () => {
-        let result;
-        await api.getOrganization().then(res => result = res.data);
-        assert.equal(result?.code, "SUCCESS");
-    });
+        it('getOrganization', async () => {
+            let result;
+            await api.getOrganization().then(res => result = res.data);
+            assert.equal(result?.code, "SUCCESS");
+        });
 
-    it('getFolders', async () => {
-        let result;
-        await api.getFolders().then(res => result = res.data);
-        assert.equal(result?.code, "SUCCESS");
-    });
+        it('getFolders', async () => {
+            let result;
+            await api.getFolders().then(res => result = res.data);
+            assert.equal(result?.code, "SUCCESS");
+        });
+    }
 });
 
 describe('Pushmetric Service', () => {
