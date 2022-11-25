@@ -1,5 +1,7 @@
 # Ghostinspector Prometheus Exporter
 
+This application acts as an interface for the online frontend testing service [ghostinspector](https://ghostinspector.com/) and the metric collection application [prometheus](https://prometheus.io/). Since prometheus requires a specific interface to scrape data off a system, third party applications specifically need to support the connection to prometheus. While ghostinspector offers a wide variety of integrations for third party software, at the time of writing this, they do not yet support prometheus. So this exporter acts as a mediator between the two systems, where ghostinspectors sends test data via webhook and api to this exporter, which then converts it into a by prometheus readable format.
+
 ## Setting up
 In order to setup this exporter, you start by filling out the ```settings.json``` file, which should like this:
 ```
@@ -53,7 +55,7 @@ When accessing either of these pages, you also need to set the `key` parameter t
 
 ## Loading the Metrics into Prometheus
 
-The get the metrics into your prometheus application, you have to edit your prometheus settings and add a new job under `scrape_configs`, which then has to be roughly set to look like this:
+To get the metrics into your prometheus application, you have to edit your prometheus settings and add a new job under `scrape_configs`, which then has to be roughly set to look like this:
 
 ```
 scrape_configs:
