@@ -74,4 +74,27 @@ The job name could be anyhting you want it to be named. The targets section shou
 
 Now you should be done and ready to use the metric within prometheus.
 
+---
+
+## Metrics
+
+Right now, there are three kind of metrics that are tracked.
+
+### Test results
+| Name | Type | Labels |
+| --- | --- | --- |
+| ghostinspector_<folder_name>_test_results | gauge | _suite_ Name of suite<br>_state_ "passing"  or "failing" |
+
+### Test execution time
+| Name | Type | Labels |
+| --- | --- | --- |
+| ghostinspector_test_execution_times | gauge | _name_ Name of test |
+
+### Organizations total test runs
+| Name | Type | Labels |
+| --- | --- | --- |
+| ghostinspector_test_runs_total | gauge | _none_ |
+
+---
+
 If you still have questions or advice on how to improve this, feel free to contact me, however do note that this was created during an internship of mine, so I most likely will not really keep maintaining this, but you are free to fork this and work on it yourself.
