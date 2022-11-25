@@ -33,7 +33,7 @@ Now you have created a Docker image for the exporter.
 ## Running the app
 Next you create a container by executing the ```docker-compose.yml```, you can do so by typing
 
-```docker-compose up```
+```docker-compose up -d```
 
 Now an instance of the exporter should be up and running. Last but not least, the app needs to be registered as a webhook in ghostinspector. This can be done in the organization settings under the "notifications" tab. First webhooks have to be enabled, then a new webhook can be created, as source you set the public url of the exporter, followed by "`/pushmetrics`" and a "`key`" url paramter, having the in the settings specified request passphrase as a value. The full url could then look like this "`https://foo.bar/pushmetrics?key=something`". The option on when to send to the webhook you set to "Always send".
 
